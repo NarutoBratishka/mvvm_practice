@@ -11,10 +11,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import ru.alexeysekatskiy.nvvmpractice.R
 import ru.alexeysekatskiy.nvvmpractice.dataBinding.data.Popularity
 import ru.alexeysekatskiy.nvvmpractice.dataBinding.data.SimpleViewModel
+import ru.alexeysekatskiy.nvvmpractice.databinding.ActivityDataBindingBinding
 
 class DataBindingActivity : AppCompatActivity() {
 
@@ -24,10 +26,15 @@ class DataBindingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_data_binding)
+//        setContentView(R.layout.activity_data_binding)
+        val binding: ActivityDataBindingBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_data_binding)
+
+        binding.name = "Ada"
+        binding.lastName = "Lovelace"
 
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-        updateName()
+//        updateName()
         updateLikes()
     }
 
@@ -40,13 +47,13 @@ class DataBindingActivity : AppCompatActivity() {
         updateLikes()
     }
 
-    /**
-     * So much findViewById! We'll fix that with Data Binding.
-     */
-    private fun updateName() {
-        findViewById<TextView>(R.id.plain_name).text = viewModel.name
-        findViewById<TextView>(R.id.plain_lastname).text = viewModel.lastName
-    }
+//    /**
+//     * So much findViewById! We'll fix that with Data Binding.
+//     */
+//    private fun updateName() {
+//        findViewById<TextView>(R.id.plain_name).text = viewModel.name
+//        findViewById<TextView>(R.id.plain_lastname).text = viewModel.lastName
+//    }
 
     /**
      * This method has many problems:
